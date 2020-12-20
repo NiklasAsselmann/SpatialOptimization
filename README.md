@@ -4,7 +4,7 @@ Code written by Niklas Aßelmann, Tom Niers, Nick Jakuschona, Mirjeta Musallaj
 
 ## Create the neede Enviroment (Once)
 Open Anaconda Prompt (Windows) or Terminal (MacOS / Linux). <br/>
-- Check if conda is available by typing:
+- Check if conda is available by typing: <br/>
 conda --version 
 - Now, create a new environment with python and Numpy installed: <br/>
 conda create -n opti -y python==3.7 numpy 

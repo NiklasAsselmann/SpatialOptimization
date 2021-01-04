@@ -1,0 +1,4 @@
+- The used data is stored in two folders 
+- in the folder "finalData" all data is stored which we finally used 
+- in the folder "preperationData" all data is stored which we used for preperation 
+- Both file name and paths are named according to the data type and time reference 

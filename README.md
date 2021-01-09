@@ -20,3 +20,9 @@ conda activate opti
 cd Your Path/SpatialOptimization
 - Then run the scripts with: <br/>
 python scriptXY.py
+
+
+## Skripts
+In this folder you find skripts to work with the data
+- readData.py transforms the tif files to pcraster and npy files. You don`t have to run this skript, the processed Data is already uploaded
+- calculate_objectives.py calculates our objectives (total revenue and vegetation area). To run this skript please set the working directory.

@@ -18,7 +18,7 @@ sugarcane_npy = numpy_operations.pcr_as_numpy(sugarcane_pot_yield)
 sugarcane_pot_yield = numpy_operations.numpy2pcr( Scalar, sugarcane_npy, 0)
 
 # calculate the total yield for sugarcane, soy, cotton and pasture
-def calculate_tot_revenue(landuse_map_in, soy_pot_yield,sugarcane_pot_yield,cotton_pot_yield,cellarea):
+def calculate_tot_revenue(landuse_map_in,cellarea):
  all_revenues = []
 
  # loop over the individuals in the population
@@ -94,23 +94,24 @@ def calculate_tot_revenue(landuse_map_in, soy_pot_yield,sugarcane_pot_yield,cott
 
   cottonRevenueTotal = float(maptotal(cottonRevenue))
 
-  #aguila(cottonRevenue,  cottonProfit, cottonCost)
+  
 
 
   # total yield agriculture is equal to sum of different crops
   tot_revenue = cattleRevenueTotal + soyRevenueTotal + sugarcaneRevenueTotal + cottonRevenueTotal
   all_revenues.append(tot_revenue)
+  #aguila(cottonRevenue,  cattleRevenue, soyRevenue, sugarcaneRevenue, pcrmap)
  return(np.array(all_revenues))
 
-landuse = np.load(default_directory + "/SpatialOptimization-main/data/finalData2/npy/landuse_2001.npy")
-landuse = [landuse]
+#landuse = np.load(default_directory + "/SpatialOptimization-main/data/finalData2/npy/landuse_2001.npy")
+#landuse = [landuse]
 
 # print(np.shape(landuse))
 # read input data for objectives
 
 
-tot_revenue =calculate_tot_revenue(landuse, soy_pot_yield, sugarcane_pot_yield, cotton_pot_yield, 6.25)
-print(tot_revenue)
+#tot_revenue =calculate_tot_revenue(landuse, soy_pot_yield, sugarcane_pot_yield, cotton_pot_yield, 6.25)
+#print(tot_revenue)
 
 
 def calculate_area(landuse_map_in,cellarea):
@@ -130,6 +131,6 @@ def calculate_area(landuse_map_in,cellarea):
   all_area.append(area)
  return(np.array(all_area))
 
-tot_area = calculate_area(landuse, 6.25)
+#tot_area = calculate_area(landuse, 6.25)
 
-print(tot_area)
+#print(tot_area)

@@ -3,8 +3,8 @@ import random
 from compute_genome import create_patch_ID_map
 from pymoo.model.crossover import Crossover
 
-default_directory = "C:/Users/nick1/OneDrive - uni-muenster.de/Master/Semester1/SpatiOptmi/Tutorial_data/SpatialOptimization-main/data/finalData2"
-protectedArea = np.load(default_directory +"/npy/protectedArea.npy")
+default_directory = "your/directory"
+protectedArea = np.load(default_directory +"data/finalData/npy/protectedArea.npy")
 
 
 class SpatialOnePointCrossover(Crossover):
@@ -24,14 +24,14 @@ class SpatialOnePointCrossover(Crossover):
     cols = shape_landusemaps[1]
     parent1 = X[0][_]
     parent2 = X[1][_]
-    print(rows)
-    print(protectedArea.shape)
+    #print(rows)
+    #print(protectedArea.shape)
     for _ in range(n_matings):
         for x in range(0, cols-1):
                     for y in range(0, rows-1):
-                        if protectedArea[x, y] == 1:
-                            parent1[x, y] = 20
-                            parent2[x, y] = 20
+                        if protectedArea[y, x] == 1:
+                            parent1[y,x] = 20
+                            parent2[y,x] = 20
         # create patch map and genome with CoMOLA functions
         patches_parent1, genome_parent1 = create_patch_ID_map(
         parent1,0,[8,9,10,20],"True")
@@ -65,9 +65,9 @@ class SpatialOnePointCrossover(Crossover):
         child2 = patches_parent2
         for x in range(0, cols):
             for y in range(0, rows):
-                if child1[x, y] != 0:
-                    child1[x, y] = genome_child1[child1[x, y] - 1]
-                    child2[x, y] = genome_child2[child2[x, y] - 1]
+                if child1[y,x] != 0:
+                    child1[y,x] = genome_child1[child1[y,x] - 1]
+                    child2[y,x] = genome_child2[child2[y,x] - 1]
         child1 = np.where(child1 == 1, X[0][_], child1)
         child2 = np.where(child2 == 1, X[1][_], child2)
         child1 = np.where(child1 == 2, X[0][_], child1)
@@ -76,17 +76,28 @@ class SpatialOnePointCrossover(Crossover):
         child2full = np.where(child2 == 0, X[0][_], child2)
         for x in range(0, cols):
             for y in range(0, rows):
-                if child1full == 20:
-                    child1full[x,y] = X[0][_][x, y]
-                if child2full == 20:
-                    child2full[x,y] = X[1][_][x, y]
+                if child1full[y,x] == 20:
+                    child1full[y,x] = X[0][_][y,x]
+                if child2full[y,x] == 20:
+                    child2full[y,x] = X[1][_][y,x]
         forrest_remaining_1 = np.count_nonzero(child1full == 1)
         cerrado_remaining_1 = np.count_nonzero(child1full == 2)
         forrest_remaining_2 = np.count_nonzero(child2full == 1)
         cerrado_remaining_2 = np.count_nonzero(child2full == 2)
-        if forrest_remaining_1 < 474376 or cerrado_remaining_1 < 412430 :
+
+
+
+
+
+
+
+        if forrest_remaining_1 < 6337 or cerrado_remaining_1 < 5554 :
+        #if forrest_remaining_1 < 4843 or cerrado_remaining_1 < 5041:
+            print("failure")
             child1full = X[0][_]
-        if forrest_remaining_2 < 474376 or cerrado_remaining_2 < 412430 :
+        if forrest_remaining_2 < 6337 or cerrado_remaining_2 < 5554 :
+        #if forrest_remaining_2 < 4843 or cerrado_remaining_2 < 5041:
+            print("failure")
             child2full = X[1][_]
         child_landuse_maps1.append(child1full)
         child_landuse_maps2.append(child2full)

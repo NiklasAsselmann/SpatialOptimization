@@ -2,8 +2,8 @@ import numpy as np
 from pymoo.model.mutation import Mutation
 from compute_genome import getNbh, determine_patch_elements, create_patch_ID_map
 
-default_directory = "C:/Users/nick1/OneDrive - uni-muenster.de/Master/Semester1/SpatiOptmi/Tutorial_data/SpatialOptimization-main/data/finalData2"
-protectedArea= np.load(default_directory +"/npy/protectedArea.npy")
+default_directory = "your/directory"
+protectedArea = np.load(default_directory +"data/finalData/npy/protectedArea.npy")
 # function to randomly change a certain patch
 def random_reset_mutation(genome_in, point_mutation_prob):
  genome = list(genome_in)
@@ -37,17 +37,22 @@ class SpatialNPointMutation(Mutation):
                 mutated_individual = patches
                 for x in range(0, cols):
                     for y in range(0, rows):
-                        if mutated_individual[x, y] != 0 and protectedArea[x,y] != 1:
-                            mutated_individual[x, y] = \
-                            mutated_genome[mutated_individual[x, y] - 1]
+                        if mutated_individual[y,x] != 0 and protectedArea[y,x] != 1:
+                            mutated_individual[y,x] = \
+                            mutated_genome[mutated_individual[y,x] - 1]
                         else:
-                            mutated_individual[x, y] = i[x,y]
+                            mutated_individual[y,x] = i[y,x]
                 mutated_individual = np.where(mutated_individual == 0, i,
                     mutated_individual)
                 forrest_remaining_1 = np.count_nonzero(mutated_individual == 1)
                 cerrado_remaining_1 = np.count_nonzero(mutated_individual == 2)
-                if forrest_remaining_1 < 474376 or cerrado_remaining_1 < 412430 :
-                    mutated_individual = i
+
+  
+                
+                if forrest_remaining_1 < 6337 or cerrado_remaining_1 < 5554 :
+                #if forrest_remaining_1 < 4843 or cerrado_remaining_1 < 5041:
+                   print("failure")
+                   mutated_individual = i
                 offspring.append(mutated_individual)
         # if no mutation
             else:

@@ -2,23 +2,22 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 # make initial population for genetic algorithm
-default_directory = "C:/Users/nick1/OneDrive - uni-muenster.de/Master/Semester1/SpatiOptmi/Tutorial_data"
+default_directory = "your/diectory"
 
 def initialize_spatial(pop_size,default_directory):
  all_landusemaps = []
- landuse_map_in = np.load(default_directory +
- "/SpatialOptimization-main/data/finalData2/npy/landuse_2001.npy")
-
+ landuse_map_in = np.load(default_directory + "/data/finalData/npy/landuse_2001.npy")
+ #landuse_map_in = np.load(default_directory + "/data/finalData/npy/landuse_2016.npy")
  rows = landuse_map_in.shape[0]
  cols = landuse_map_in.shape[1]
- print(cols)
+ #print(cols)
  # iterate to get multiple realizations for the initial population
  for i in range(1,pop_size+1):
  #use uniform distribution to select 30% of the cells 
     landuse_map_ini = np.zeros((rows,cols),dtype='uint8')
     random_map = np.random.uniform(0.0,1.0,(rows,cols))
     random_map_mw = np.zeros((rows,cols))
-    print(random_map_mw.shape)
+    #print(random_map_mw.shape)
 
  # take window average of random map to create larger patches
     

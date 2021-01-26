@@ -4,15 +4,17 @@ import numpy as np
 from compute_genome import create_patch_ID_map
 import pickle
 
-default_directory = "<enter-directory-path>"
+default_directory = "your/diectory"
 
-setclone(2351, 2655, 250, -60.5615, -12.6411) 
-#setclone(100, 100, 250, -60.5615, -12.6411) 
+
+setclone(277, 307, 2000, -60.5615, -12.6411)
 sp_slaughterhouses =readmap(default_directory +"/data/finalData/pcraster/slaughterhouses_spread_2001.map") 
 sp_soy =readmap(default_directory +"/data/finalData/pcraster/soy_spread_2001.map") 
+#sp_slaughterhouses =readmap(default_directory +"/data/finalData/pcraster/slaughterhouses_spread_2016.map") 
+#sp_soy =readmap(default_directory +"/data/finalData/pcraster/soy_spread_2016.map") 
 soy_pot_yield =readmap( default_directory +"/data/finalData/pcraster/soy_pot_yield.map")
-sugarcane_pot_yield=readmap( default_directory +"/data/finalData/pcraster/sugarcane_pot_yield.map")
-cotton_pot_yield=readmap( default_directory +"/data/finalData/pcraster/cotton_pot_yield.map")
+sugarcane_pot_yield=readmap( default_directory +"/data/finalData/pcraster/cotton_pot_yield.map")
+cotton_pot_yield=readmap( default_directory +"/data/finalData//pcraster/cotton_pot_yield.map")
 
 sugarcane_npy = numpy_operations.pcr_as_numpy(sugarcane_pot_yield)
 sugarcane_pot_yield = numpy_operations.numpy2pcr( Scalar, sugarcane_npy, 0)
@@ -103,14 +105,14 @@ def calculate_tot_revenue(landuse_map_in,cellarea):
   #aguila(cottonRevenue,  cattleRevenue, soyRevenue, sugarcaneRevenue, pcrmap)
  return(np.array(all_revenues))
 
-#landuse = np.load(default_directory + "/SpatialOptimization-main/data/finalData2/npy/landuse_2001.npy")
+#landuse = np.load(default_directory + "/SpatialOptimization-main/data/finalData3/npy/landuse_2001.npy")
 #landuse = [landuse]
 
-# print(np.shape(landuse))
+#print(np.shape(landuse))
 # read input data for objectives
 
 
-#tot_revenue =calculate_tot_revenue(landuse, soy_pot_yield, sugarcane_pot_yield, cotton_pot_yield, 6.25)
+#tot_revenue =calculate_tot_revenue(landuse, 40000)
 #print(tot_revenue)
 
 

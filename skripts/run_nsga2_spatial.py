@@ -76,3 +76,18 @@ print(res.F)
 np.save(default_directory +"results/maps",res.X)
 np.save(default_directory +"results/values",res.F)
 
+# Create an empty list to save objective values per generation
+# Needed for history 
+f = []
+# iterate over the generations
+for generation in res.history:
+ # retrieve the optima for all objectives from the generation
+ opt = generation.opt
+ this_f = opt.get("F")
+ f.append(this_f)
+
+fNumpy = np.asarray(f)
+
+np.save(default_directory +"results/history",fNumpy)
+
+

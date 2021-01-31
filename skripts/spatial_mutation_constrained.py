@@ -2,7 +2,7 @@ import numpy as np
 from pymoo.model.mutation import Mutation
 from compute_genome import getNbh, determine_patch_elements, create_patch_ID_map
 
-default_directory = "your/directory"
+default_directory = "/home/nick/uni/spatialopti/SpatialOptimization/"
 protectedArea = np.load(default_directory +"data/finalData/npy/protectedArea.npy")
 # function to randomly change a certain patch
 def random_reset_mutation(genome_in, point_mutation_prob):
@@ -29,7 +29,7 @@ class SpatialNPointMutation(Mutation):
             # performe mutation with certain probability
             if np.random.uniform(0, 1) < self.prob:
                 # get genome
-                patches, genome = create_patch_ID_map(i, 0, [8, 9], "True")
+                patches, genome = create_patch_ID_map(i, 0, [8, 9, 10, 20], "True")
                 # perform mutation
                 mutated_genome = random_reset_mutation(genome,
                 self.point_mutation_probability)
@@ -46,8 +46,8 @@ class SpatialNPointMutation(Mutation):
                     mutated_individual)
                 forrest_remaining_1 = np.count_nonzero(mutated_individual == 1)
                 cerrado_remaining_1 = np.count_nonzero(mutated_individual == 2)
-                soy_remaining_1 = np.count_nonzero(child1full == 4)
-                pasture_remaining_1 = np.count_nonzero(child1full == 7)
+                soy_remaining_1 = np.count_nonzero(mutated_individual == 4)
+                pasture_remaining_1 = np.count_nonzero(mutated_individual == 7)
                 ratio= pasture_remaining_1/soy_remaining_1
                 if forrest_remaining_1 < 6337 or cerrado_remaining_1 < 5554 or ratio < 4 or ratio > 7:
                 #if forrest_remaining_1 < 4843 or cerrado_remaining_1 < 5041 or ratio < 1 or ratio > 7:

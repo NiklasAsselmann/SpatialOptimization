@@ -2,7 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 # make initial population for genetic algorithm
-default_directory = "your/diectory"
+default_directory = "/home/nick/uni/spatialopti/SpatialOptimization/"
+
+protectedArea = np.load(default_directory +"data/finalData/npy/protectedArea.npy")
 
 def initialize_spatial(pop_size,default_directory):
  all_landusemaps = []
@@ -10,6 +12,13 @@ def initialize_spatial(pop_size,default_directory):
  #landuse_map_in = np.load(default_directory + "/data/finalData/npy/landuse_2016.npy")
  rows = landuse_map_in.shape[0]
  cols = landuse_map_in.shape[1]
+ landuse_map_in2 = landuse_map_in
+ #print(rows)
+ #print(protectedArea.shape)
+ for x in range(0, cols-1):
+    for y in range(0, rows-1):
+        if protectedArea[y, x] == 1:
+            landuse_map_in2[y,x] = 20
  #print(cols)
  # iterate to get multiple realizations for the initial population
  for i in range(1,pop_size+1):
@@ -30,19 +39,35 @@ def initialize_spatial(pop_size,default_directory):
 
     # 70% of the map remains the current land use
     landuse_map_ini = np.where(random_map_mw>=0.3,
-    landuse_map_in,landuse_map_ini)
+    landuse_map_in2,landuse_map_ini)
 
     # 30% of the map will become new
     # urban, water and no data will remain the same
-    landuse_map_ini = np.where(landuse_map_in >= 8,
-    landuse_map_in,landuse_map_ini)
+    landuse_map_ini = np.where(landuse_map_in2 >= 8,
+    landuse_map_in2,landuse_map_ini)
+
+    for x in range(0, cols-1):
+        for y in range(0, rows-1):
+            if protectedArea[y, x] == 1:
+                landuse_map_ini[y,x] = landuse_map_in[y,x]
 
     # other land use classes can change into 3, 4, 5, 6 or 7
     # choose which land cover type
     landuse_map_ini = np.where(landuse_map_ini == 0,
     np.random.randint(low=3, high=7,size=(rows,cols)),
     landuse_map_ini)
-    all_landusemaps.append(landuse_map_ini)
+    forrest_remaining_1 = np.count_nonzero(landuse_map_ini == 1)
+    cerrado_remaining_1 = np.count_nonzero(landuse_map_ini == 2)
+    soy_remaining_1 = np.count_nonzero(landuse_map_ini == 4)
+    pasture_remaining_1 = np.count_nonzero(landuse_map_ini == 7)
+    ratio= pasture_remaining_1/soy_remaining_1
+    #if forrest_remaining_1 < 6337 or cerrado_remaining_1 < 5554 or ratio < 4 or ratio > 7:
+    #if forrest_remaining_1 < 4843 or cerrado_remaining_1 < 5041 or ratio < 1 or ratio > 7:
+    #if forrest_remaining_1 < 4843 or cerrado_remaining_1 < 5041:
+    if forrest_remaining_1 < 6337 or cerrado_remaining_1 < 5554:
+        all_landusemaps.append(landuse_map_in)
+    else:
+        all_landusemaps.append(landuse_map_ini)
  return np.array(all_landusemaps)
 
 # maps = initialize_spatial(3, default_directory)

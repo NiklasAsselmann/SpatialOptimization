@@ -12,7 +12,7 @@ def initialize_spatial(pop_size,default_directory):
  #landuse_map_in = np.load(default_directory + "/data/finalData/npy/landuse_2016.npy")
  rows = landuse_map_in.shape[0]
  cols = landuse_map_in.shape[1]
- landuse_map_in2 = landuse_map_in
+ landuse_map_in2 = landuse_map_in.copy()
  #print(rows)
  #print(protectedArea.shape)
  for x in range(0, cols-1):
@@ -61,13 +61,15 @@ def initialize_spatial(pop_size,default_directory):
     soy_remaining_1 = np.count_nonzero(landuse_map_ini == 4)
     pasture_remaining_1 = np.count_nonzero(landuse_map_ini == 7)
     ratio= pasture_remaining_1/soy_remaining_1
-    #if forrest_remaining_1 < 6337 or cerrado_remaining_1 < 5554 or ratio < 4 or ratio > 7:
-    #if forrest_remaining_1 < 4843 or cerrado_remaining_1 < 5041 or ratio < 1 or ratio > 7:
-    #if forrest_remaining_1 < 4843 or cerrado_remaining_1 < 5041:
-    if forrest_remaining_1 < 6337 or cerrado_remaining_1 < 5554:
-        all_landusemaps.append(landuse_map_in)
-    else:
-        all_landusemaps.append(landuse_map_ini)
+    if forrest_remaining_1 < 6337:
+    #if forrest_remaining_1 < 4843 or 
+        landuse_map_ini = np.where(landuse_map_in2 == 1, landuse_map_in2, landuse_map_ini)
+    if cerrado_remaining_1 < 5554:
+    #if cerrado_remaining_1 < 5041:
+        landuse_map_ini = np.where(landuse_map_in2 == 2, landuse_map_in2, landuse_map_ini) 
+    if i == 1:
+        landuse_map_ini = landuse_map_in
+    all_landusemaps.append(landuse_map_ini)
  return np.array(all_landusemaps)
 
 # maps = initialize_spatial(3, default_directory)

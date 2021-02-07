@@ -29,8 +29,8 @@ def _new_get_crossover_options():
         from pymoo.operators.integer_from_float_operator import IntegerFromFloatCrossover
         from pymoo.operators.crossover.edge_recombination_crossover import EdgeRecombinationCrossover
         from pymoo.operators.crossover.order_crossover import OrderCrossover
-        #from spatial_crossover import SpatialOnePointCrossover
-        from spatial_crossover_constrained import SpatialOnePointCrossover
+        from spatial_crossover import SpatialOnePointCrossover
+        #from spatial_crossover_constrained import SpatialOnePointCrossover
         CROSSOVER = [
             ("real_sbx", SimulatedBinaryCrossover, dict(prob=0.9, eta=30)),
             ("int_sbx", IntegerFromFloatCrossover, dict(clazz=SimulatedBinaryCrossover, prob=0.9, eta=30)),
@@ -53,8 +53,8 @@ def _new_get_mutation_options():
     from pymoo.operators.mutation.polynomial_mutation import PolynomialMutation
     from pymoo.operators.integer_from_float_operator import IntegerFromFloatMutation
     from pymoo.operators.mutation.inversion_mutation import InversionMutation
-    #from spatial_mutation import SpatialNPointMutation
-    from spatial_mutation_constrained import SpatialNPointMutation
+    from spatial_mutation import SpatialNPointMutation
+    #from spatial_mutation_constrained import SpatialNPointMutation
 
     MUTATION = [
         ("none", NoMutation, {}),
@@ -116,7 +116,7 @@ def _new_crossover_do(self, problem, pop, parents, **kwargs):
         # flatten the array to become a 2d-array
         print(X.shape)
         if len(X.shape)>3:
-            X = X.reshape(10, X.shape[-2], X.shape[-1])
+            X = X.reshape(16, X.shape[-2], X.shape[-1])
         else:
             X = X.reshape(-1, X.shape[-1])
         # create a population object

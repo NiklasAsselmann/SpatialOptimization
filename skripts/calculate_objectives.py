@@ -4,7 +4,7 @@ import numpy as np
 from compute_genome import create_patch_ID_map
 import pickle
 
-default_directory = "your/diectory"
+default_directory = "/home/nick/uni/spatialopti/SpatialOptimization"
 
 
 setclone(277, 307, 2000, -60.5615, -12.6411)
@@ -105,7 +105,7 @@ def calculate_tot_revenue(landuse_map_in,cellarea):
   #aguila(cottonRevenue,  cattleRevenue, soyRevenue, sugarcaneRevenue, pcrmap)
  return(np.array(all_revenues))
 
-#landuse = np.load(default_directory + "/SpatialOptimization-main/data/finalData3/npy/landuse_2001.npy")
+#landuse = np.load(default_directory + "/data/finalData/npy/landuse_2001.npy")
 #landuse = [landuse]
 
 #print(np.shape(landuse))
@@ -133,6 +133,6 @@ def calculate_area(landuse_map_in,cellarea):
   all_area.append(area)
  return(np.array(all_area))
 
-#tot_area = calculate_area(landuse, 6.25)
+#tot_area = calculate_area(landuse, 400)
 
 #print(tot_area)

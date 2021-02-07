@@ -22,8 +22,8 @@ from pymoo.algorithms.nsga2 import NSGA2
 from pymoo.factory import get_sampling, get_crossover, get_mutation
 from pymoo.factory import get_termination
 from pymoo.optimize import minimize
-default_directory = "your/directory"
-cell_area = 200 * 200 # in hectares
+default_directory = "/home/nick/uni/spatialopti/SpatialOptimization"
+cell_area = 400 # in hectares
 # read input data for objectives
 
 from pymoo.model.problem import Problem
@@ -49,17 +49,17 @@ print(problem)
 from pymoo.algorithms.nsga2 import NSGA2
 from pymoo.factory import get_sampling, get_crossover, get_mutation
 algorithm = NSGA2(
- pop_size=70,
- n_offsprings=10,
+ pop_size=100,
+ n_offsprings=16,
  sampling=get_sampling("spatial", default_dir = default_directory),
  crossover=get_crossover("spatial_one_point_crossover", n_points = 3),
- mutation=get_mutation("spatial_n_point_mutation", prob = 0.01,
- point_mutation_probability = 0.015),
+ mutation=get_mutation("spatial_n_point_mutation", prob = 0.2,
+ point_mutation_probability = 0.2),
  eliminate_duplicates=False
  )
 
 from pymoo.factory import get_termination 
-termination = get_termination("n_gen", 10)
+termination = get_termination("n_gen", 2500)
 
 from pymoo.optimize import minimize
 res = minimize(problem,
@@ -73,8 +73,8 @@ print(res)
 print(res.X)
 print(res.F)
 
-np.save(default_directory +"results/maps",res.X)
-np.save(default_directory +"results/values",res.F)
+np.save(default_directory +"/results2001N3/maps",res.X)
+np.save(default_directory +"/results2001N3/values",res.F)
 
 # Create an empty list to save objective values per generation
 # Needed for history 
@@ -88,6 +88,6 @@ for generation in res.history:
 
 fNumpy = np.asarray(f)
 
-np.save(default_directory +"results/history",fNumpy)
+np.save(default_directory +"/results2001N3/history",fNumpy)
 
 

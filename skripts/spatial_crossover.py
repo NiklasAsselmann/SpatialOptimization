@@ -3,7 +3,7 @@ import random
 from compute_genome import create_patch_ID_map
 from pymoo.model.crossover import Crossover
 
-default_directory = "your/directory"
+default_directory = "/home/nick/uni/spatialopti/SpatialOptimization/"
 protectedArea = np.load(default_directory +"data/finalData/npy/protectedArea.npy")
 
 
@@ -87,18 +87,20 @@ class SpatialOnePointCrossover(Crossover):
 
 
 
-
-
-
-
-        if forrest_remaining_1 < 6337 or cerrado_remaining_1 < 5554 :
-        #if forrest_remaining_1 < 4843 or cerrado_remaining_1 < 5041:
+        if forrest_remaining_1 < 6337:
+        #if forrest_remaining_1 < 4843 or 
+            child1full = np.where(X[0][_] == 1, X[0][_], child1full)
             print("failure")
-            child1full = X[0][_]
-        if forrest_remaining_2 < 6337 or cerrado_remaining_2 < 5554 :
-        #if forrest_remaining_2 < 4843 or cerrado_remaining_2 < 5041:
+        if cerrado_remaining_1 < 5554:
+        #if cerrado_remaining_1 < 5041:
+            child1full = np.where(X[0][_] == 2, X[0][_], child1full)
+        if forrest_remaining_1 < 6337:
+        #if forrest_remaining_1 < 4843 or 
+            child2full = np.where(X[1][_] == 1, X[1][_], child2full)
             print("failure")
-            child2full = X[1][_]
+        if cerrado_remaining_1 < 5554:
+        #if cerrado_remaining_1 < 5041:
+            child2full = np.where(X[1][_] == 2, X[1][_], child2full)
         child_landuse_maps1.append(child1full)
         child_landuse_maps2.append(child2full)
         

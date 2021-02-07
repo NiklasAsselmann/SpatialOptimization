@@ -22,8 +22,8 @@ from pymoo.algorithms.nsga2 import NSGA2
 from pymoo.factory import get_sampling, get_crossover, get_mutation
 from pymoo.factory import get_termination
 from pymoo.optimize import minimize
-default_directory = "your/directory"
-cell_area = 200 * 200 # in hectares
+default_directory = "C:/Users/nick1/OneDrive - uni-muenster.de/Master/Semester1/SpatiOptmi/SpatialOptimization/"
+cell_area = 400 # in hectares
 # read input data for objectives
 
 from pymoo.model.problem import Problem

@@ -4,7 +4,8 @@ import numpy as np
 from compute_genome import create_patch_ID_map
 import pickle
 
-default_directory = "/home/nick/uni/spatialopti/SpatialOptimization"
+default_directory = "C:/Users/nick1/OneDrive - uni-muenster.de/Master/Semester1/SpatiOptmi/SpatialOptimization/"
+
 
 
 setclone(277, 307, 2000, -60.5615, -12.6411)
@@ -25,6 +26,8 @@ def calculate_tot_revenue(landuse_map_in,cellarea):
 
  # loop over the individuals in the population
  for land_use_map in landuse_map_in:
+
+
   pcrmap = numpy_operations.numpy2pcr( Nominal, land_use_map, 0)
   pasture = pcrmap == 7
 
@@ -32,10 +35,10 @@ def calculate_tot_revenue(landuse_map_in,cellarea):
      
   cattleProfit = pastureOutcome * 300 
   cattleCost = pastureOutcome * 164.78
-  
   cattleTransportCost= sp_slaughterhouses/1000 * 0.02 * pastureOutcome # /cellare has to be transformed to hectar
-
   cattleRevenue = cattleProfit - cattleCost - cattleTransportCost
+  #aguila(cattleRevenue, cattleProfit, cattleCost, cattleTransportCost)
+  
 
   cattleRevenueTotal = float(maptotal(cattleRevenue))
 
@@ -43,17 +46,10 @@ def calculate_tot_revenue(landuse_map_in,cellarea):
   # soy
 
   soy = pcrmap == 4
-
-
   yield_soy = ifthenelse(soy, soy_pot_yield*cellarea, 0) # 20 -> soymap
-  
-  
-  
-
   soyProfit = yield_soy * 235.9895
   soyCost = yield_soy * 189.629798
   soyTransportCost= (sp_soy/60/1000) * yield_soy * 2.68 
-
   soyRevenue = soyProfit - soyCost - soyTransportCost
   
 

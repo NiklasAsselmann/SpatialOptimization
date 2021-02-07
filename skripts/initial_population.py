@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 # make initial population for genetic algorithm
-default_directory = "/home/nick/uni/spatialopti/SpatialOptimization/"
+default_directory = "C:/Users/nick1/OneDrive - uni-muenster.de/Master/Semester1/SpatiOptmi/SpatialOptimization/"
 
 protectedArea = np.load(default_directory +"data/finalData/npy/protectedArea.npy")
 
@@ -38,7 +38,7 @@ def initialize_spatial(pop_size,default_directory):
                 random_map_mw[y,x] = random_map[y-1:y+2,x-1:x+2].mean()
 
     # 70% of the map remains the current land use
-    landuse_map_ini = np.where(random_map_mw>=0.3,
+    landuse_map_ini = np.where(random_map_mw>=0,
     landuse_map_in2,landuse_map_ini)
 
     # 30% of the map will become new

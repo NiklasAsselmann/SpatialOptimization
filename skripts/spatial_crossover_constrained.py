@@ -3,7 +3,7 @@ import random
 from compute_genome import create_patch_ID_map
 from pymoo.model.crossover import Crossover
 
-default_directory = "your/directory"
+default_directory = "default_directory = "C:/Users/nick1/OneDrive - uni-muenster.de/Master/Semester1/SpatiOptmi/SpatialOptimization/"
 protectedArea = np.load(default_directory +"data/finalData/npy/protectedArea.npy")
 
 

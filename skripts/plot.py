@@ -1,11 +1,13 @@
+from pcraster import *
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 import matplotlib.patches as mpatches
+import matplotlib.colors
 
-default_directory = "your/directory"
+default_directory = "C:/Users/nick1/OneDrive - uni-muenster.de/Master/Semester1/SpatiOptmi/SpatialOptimization/"
 
-landuse_map_in = np.load(default_directory + "/data/finalData/npy/landuse_2001.npy")
+landuse_map_in = np.load(default_directory + "data/finalData/npy/landuse_2001.npy")
 #landuse_map_in = np.load(default_directory + "/data/finalData/npy/landuse_2016.npy")
 
 
@@ -29,12 +31,12 @@ im1= plt.imshow(landuse_map_in,interpolation='none',
 ax2.set_xlabel('Column #')
 ax2.set_ylabel('Row #')
 ax2.legend(handles=legend_landuse2,bbox_to_anchor=(1.05, 1), loc=2)
-plt.imsave(default_directory +"results/inital.tif", landuse_map_in,format='tiff',cmap=cmap2)
+plt.imsave(default_directory +"results2001N2/inital.tif", landuse_map_in,format='tiff',cmap=cmap2)
 plt.show()
 
 
-results = np.load(default_directory + "results2016/values.npy")
-maps = np.load(default_directory + "results2016/maps.npy")
+results = np.load(default_directory + "results2001N2/values.npy")
+maps = np.load(default_directory + "results2001N2/maps.npy")
 
 landuse_max_yield = maps[np.argmin(results[:,0], axis=0)]
 landuse_max_biomass = maps[np.argmin(results[:,1], axis=0)]
@@ -54,24 +56,47 @@ plt.legend(handles=legend_landuse2,bbox_to_anchor=(1.05, 1), loc=2,
  prop={'size': 9})
 # Adjust location of the plots to make space for legend and save
 plt.subplots_adjust(right = 0.6, hspace=0.2)
-plt.savefig(default_directory+"results/landuse_max.png",dpi=150)
+plt.savefig(default_directory+"results2001N2/landuse_max.png",dpi=150)
 plt.show()
 
+def find_nearest(array, value):
+    idx = np.argmin(np.abs(array - value))
+    return idx
 
 # Pareto Front
+from calculate_objectives import calculate_tot_revenue, calculate_area
+revenue= calculate_tot_revenue([landuse_map_in], 400)
+area= calculate_area([landuse_map_in], 400)
+print(area)
+print(revenue)
 f1, ax1 = plt.subplots(1)
-im1 = plt.scatter(-results[:,0],-results[:,1])
+plt.scatter(-results[:,0],-results[:,1])
+plt.plot(revenue[0],area[0], "or")
 ax1.set_title("Objective Space")
 ax1.set_xlabel('Total revenue [US$]')
 ax1.set_ylabel('Natural Vegetation [hectar]')
+plt.savefig(default_directory+"/results2001N2/pareto_front.png")
+plt.show()
+
+idx= find_nearest(results[:,0],- revenue[0])
+print(results[:,0][idx])
+landuse_nearest = maps[idx]
+
+im1= plt.imshow(landuse_nearest,interpolation='none',
+ cmap=cmap2,vmin = 0.5, vmax = 10.5)
+#ax2.set_title('Landuse map reclassed')
+ax2.set_xlabel('Column #')
+ax2.set_ylabel('Row #')
+ax2.legend(handles=legend_landuse2,bbox_to_anchor=(1.05, 1), loc=2)
+#plt.imsave(default_directory +"results2001N2/inital.tif", landuse_map_in,format='tiff',cmap=cmap2)
 plt.show()
 
 
 
 # Pareto Front different generations 
-history = np.load(default_directory + "results/history.npy", allow_pickle=True)
+history = np.load(default_directory + "results2001N2/history.npy", allow_pickle=True)
 # add here the generations you want to see in the plot
-generations2plot = [1,2,3,5,8,10]
+generations2plot = [100, 200, 300, 400, 500]
 # make the plot
 fig4, ax4 = plt.subplots(1)
 # i - 1, because generation 1 has index 0
@@ -79,6 +104,7 @@ for i in generations2plot:
  plt.scatter(-history[i-1][:,0],-history[i-1][:,1])
 ax4.set_xlabel('Total revenue [US$]')
 ax4.set_ylabel('Natural Vegetation [hectar]')
+plt.plot(revenue[0],area[0], "or")
 plt.legend(list(map(str, generations2plot)))
 #plt.savefig(default_directory+"/figures/pareto_front_over_generations.png")
 plt.show()

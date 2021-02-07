@@ -52,7 +52,7 @@ class SpatialNPointMutation(Mutation):
                 if forrest_remaining_1 < 6337 or cerrado_remaining_1 < 5554 :
                 #if forrest_remaining_1 < 4843 or cerrado_remaining_1 < 5041:
                    print("failure")
-                   mutated_individual = i
+
                 offspring.append(mutated_individual)
         # if no mutation
             else:

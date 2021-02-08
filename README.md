@@ -1,4 +1,4 @@
-# Spatial Optimization Approach to analyse the Impact of Minimizing Transport Distances within the Supply Chains of Agricultural Cultivation and Livestock Farming on the Agricultural Profit and the Area of Natural Vegetation in Mato Grosso, Brazil. 
+# Spatial Optimization Approach to Analyse the Impact of Minimizing Transport Distances within the Supply Chains of Agricultural Cultivation and Livestock Farming on the Agricultural Profit and the Area of Natural Vegetation in Mato Grosso, Brazil. 
 
 For this purpose, an NSGA-II optimization is performed to investigate: 
 

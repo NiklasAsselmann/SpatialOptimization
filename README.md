@@ -1,7 +1,14 @@
-# SpatialOptimization
-Spatial  Optimization project at the ifgi in Münster <br/>
-Code written by Niklas Aßelmann, Tom Niers, Nick Jakuschona, Mirjeta Musallaj
+# Spatial Optimization Approach to analyse the Impact of Minimizing Transport Distances within the Supply Chains of Agricultural Cultivation and Livestock Farming on the Agricultural Profit and the Area of Natural Vegetation in Mato Grosso, Brazil. 
 
+For this purpose, an NSGA-II optimization is performed to investigate: 
+
+1. How can the study area be used to maximize the agricultural profit but to keep or increase the area of natural vegetation?
+2. Which effect has minimizing the transport distances within the supply chains of agricultural cultivation and livestock farming on the gained profit and the land consumption of natural vegetation?
+
+A more detailed explanation of Objectives, Control Variables, Constraints and Implementation will be available here shortly. 
+This software was developed as part of the study project "Spatial Optimization" in the winterterm 2020/21 at [ifgi](https://www.uni-muenster.de/Geoinformatics/en/index.html) at the [University of Münster](https://www.uni-muenster.de/en/). 
+
+# How-To 
 ## Create the neede Enviroment (Once)
 Open Anaconda Prompt (Windows) or Terminal (MacOS / Linux). <br/>
 - Check if conda is available by typing: <br/>
@@ -22,7 +29,7 @@ cd Your Path/SpatialOptimization
 python scriptXY.py
 
 
-## Skripts
+## Scripts
 In this folder you find skripts to work with the data
 - readData.py transforms the tif files to pcraster and npy files. You don`t have to run this skript, the processed Data is already uploaded
 - calculate_objectives.py calculates our objectives (total revenue and vegetation area). To run this skript please set the working directory.
@@ -60,7 +67,6 @@ In this folder you find skripts to work with the data
     - comment line 9
 - run_nsga2_spatial.py
     - specify result directory in line 76 and 77
-
 
 ### Use your own data
 -  Thats a lot of work ...

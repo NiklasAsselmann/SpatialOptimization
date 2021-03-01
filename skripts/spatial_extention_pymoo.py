@@ -54,7 +54,6 @@ def _new_get_mutation_options():
     from pymoo.operators.integer_from_float_operator import IntegerFromFloatMutation
     from pymoo.operators.mutation.inversion_mutation import InversionMutation
     from spatial_mutation import SpatialNPointMutation
-    #from spatial_mutation_constrained import SpatialNPointMutation
 
     MUTATION = [
         ("none", NoMutation, {}),

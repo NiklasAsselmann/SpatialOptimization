@@ -96,6 +96,7 @@ print(res)
 print(res.X)
 print(res.F)
 
+#save final land use maps and corresponding values of profit and area of natural vegetation for each map
 np.save(default_directory + resultDirectory+"/maps",res.X)
 np.save(default_directory + resultDirectory+"/values",res.F)
 
@@ -104,13 +105,14 @@ np.save(default_directory + resultDirectory+"/values",res.F)
 f = []
 # iterate over the generations
 for generation in res.history:
- # retrieve the optima for all objectives from the generation
+ # retrieve the optimal for all objectives from the generation
  opt = generation.opt
  this_f = opt.get("F")
  f.append(this_f)
 
 fNumpy = np.asarray(f)
 
+#save history
 np.save(default_directory + resultDirectory +"/history",fNumpy)
 
 

@@ -23,6 +23,7 @@ minCerradoArea = minAreas[1]
 # make initial population for genetic algorithm
 def initialize_spatial(pop_size,default_directory):
  all_landusemaps = []
+ # read land use map dedending on the year
  if year==2001:
         landuse_map_in = np.load(default_directory + "/data/finalData/npy/landuse_2001.npy")
  elif year == 2016:
@@ -30,13 +31,12 @@ def initialize_spatial(pop_size,default_directory):
  rows = landuse_map_in.shape[0]
  cols = landuse_map_in.shape[1]
  landuse_map_in2 = landuse_map_in.copy()
- #print(rows)
- #print(protectedArea.shape)
+ # transform land use inside protected areas to new land use class
  for x in range(0, cols-1):
     for y in range(0, rows-1):
         if protectedArea[y, x] == 1:
             landuse_map_in2[y,x] = 20
- #print(cols)
+
  # iterate to get multiple realizations for the initial population
  for i in range(1,pop_size+1):
  #use uniform distribution to select 30% of the cells 
@@ -59,7 +59,7 @@ def initialize_spatial(pop_size,default_directory):
     landuse_map_in2,landuse_map_ini)
 
     # 30% of the map will become new
-    # urban, water and no data will remain the same
+    # urban, water, protected areas and no data will remain the same
     landuse_map_ini = np.where(landuse_map_in2 >= 8,
     landuse_map_in2,landuse_map_ini)
 
@@ -76,13 +76,18 @@ def initialize_spatial(pop_size,default_directory):
     landuse_map_ini = np.where(landuse_map_ini == 0,
     np.random.randint(low=3, high=6,size=(rows,cols)),
     landuse_map_ini)
+
+    #calculate remaining forest and cerrado areas 
     forrest_remaining_1 = np.count_nonzero(landuse_map_ini == 1)
     cerrado_remaining_1 = np.count_nonzero(landuse_map_ini == 2)
-    print(minAreas)
+
+    # if there was more deforested than allowed, reset forest or cerrado from parent        
     if forrest_remaining_1 < minForestArea:
         landuse_map_ini = np.where(landuse_map_in2 == 1, 1, landuse_map_ini)
     if cerrado_remaining_1 < minCerradoArea:
         landuse_map_ini = np.where(landuse_map_in2 == 2, 2, landuse_map_ini) 
+
+    # take one time the unchanged inital map
     if i == 1:
         landuse_map_ini = landuse_map_in
     all_landusemaps.append(landuse_map_ini)

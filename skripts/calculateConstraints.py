@@ -14,7 +14,7 @@ cerradoRemain = yamlData["optimization"]["areaCerradoRemains"]
 
 default_directory = directory
 
-#calculate the amount of forest and cerrado that has to remain
+#calculate the area of forest and cerrado that has to remain
 def calculate_constraints():
     if year==2001:
         land_use_map_in = np.load(default_directory + "/data/finalData/npy/landuse_2001.npy")
@@ -23,10 +23,11 @@ def calculate_constraints():
     else:
         raise ValueError("Year must be 2001 or 2016")
         
-    
+    #calculate actual area
     forest_area = np.count_nonzero(land_use_map_in== 1)
     cerrado_area= np.count_nonzero(land_use_map_in == 2)
 
+    #calculate are that has to remain
     forest_area_min = forest_area * forestRemain
     cerrado_area_min  = cerrado_area * cerradoRemain
 

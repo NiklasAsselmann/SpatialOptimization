@@ -1,13 +1,13 @@
-directory: "C:/Users/nick1/OneDrive - uni-muenster.de/Master/Semester1/SpatiOptmi/SpatialOptimization/" #default directory were the data as well as the skripts are inside
+directory: "your/directory" #default directory were the data as well as the skripts are inside
 optimization: #parameters of the optimization
   year: 2001 #which year to take: valid values 2001 and 2016
   crossoverPoints: 7 #number of crossover points during crossover
-  offspring: 10 #number of offsprings
-  populationSize: 10 #population size
+  offspring: 20 #number of offsprings
+  populationSize: 300 #population size
   initialPopulationChange: 0.3 #initial population is intial map changed by procent 
   mutationPropability: 0.2 #propability that a map gets mutated after crossover
   patchesMutationPropability: 0.2 #propability that one patch gets mutatd
-  generations: 10 #overall number of generations
+  generations: 3000 #overall number of generations
   areaForestRemains: 0.8 # area of forest that must remain
   areaCerradoRemains: 0.35 # area of cerrado that mus remain
-resultDirectory: test # directory name where the results should be saved. Relative to default directory
+resultDirectory: results/results2016 # directory name where the results should be saved. Relative to default directory

@@ -33,16 +33,19 @@ cd ../SpatialOptimization/skripts
 - Set the wanted configurations in the config.yaml file
 - Then run the scripts with: <br/>
 python scriptXY.py
+- The main script is run_nsga2_spatial.py
 
 ### Scripts
 In the folder scripts you find scripts to work with the data
 - readData.py transforms the tif files to pcraster and npy files. You do not have to run this skript, the processed Data is already uploaded in the folder `/data/finalData`
 - calculate_objectives.py calculates our objectives (total revenue and vegetation area). To run this skript please set the working directory.
+    - 2001 use the transport distances from 2001
+    - 2016 use the transport distances from 2016
 - spatial_crossover.py transform the crossover of the nsga II. Further information about NSGA-II: [https://doi.org/10.1109/4235.996017](https://doi.org/10.1109/4235.996017)
 - spatial_mutation.py transform the crossover of the nsga II. Further information about NSGA-II: [https://doi.org/10.1109/4235.996017](https://doi.org/10.1109/4235.996017)
-    - _constrained constraint the ratio between soy and pasture
 - run_nsga2_spatial.py runs the algorithm and save the results
 - plot.py plots the initial landuse map and the two result maps. It also uses the year configuations from the config.yaml
-- config.yaml to set the parameters for the optimization (e.g. population size, generations). Besides you can also set for the constraint concerning the governmental restrictions how much area of forest and cerrado (in %) needs to remain in each optimization step. 
+- config.yaml to set the parameters for the optimization (e.g. population size, generations). Besides you can also set for the constraint concerning the governmental restrictions how much area of forest and cerrado (in %) needs to remain in each optimization step. The variables are intially already filled with suggested values.
+
 
 

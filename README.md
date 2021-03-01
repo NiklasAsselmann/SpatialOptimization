@@ -12,6 +12,8 @@ conda create -n opti -y python==3.7 numpy
 conda activate opti 
 - Next, install the pymoo libr/ary: <br/>
 pip install -U pymoo 
+- Install pyyampl library: <br/>
+pip install pyyaml
 
 ## Start your Enviroment and run the Code(Everytime you want to run the Optimization)
 - If your Enviroment is createt you can start it with the conda command: <br/>

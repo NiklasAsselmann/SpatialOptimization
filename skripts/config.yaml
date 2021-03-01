@@ -10,4 +10,4 @@ optimization: #parameters of the optimization
   generations: 10 #overall number of generations
   areaForestRemains: 0.8 # area of forest that must remain
   areaCerradoRemains: 0.35 # area of cerrado that mus remain
-resultDirectory: test/
+resultDirectory: test # directory name where the results should be saved. Relative to default directory

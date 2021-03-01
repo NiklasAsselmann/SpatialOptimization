@@ -1,4 +1,4 @@
-directory: "C:/Users/nick1/OneDrive - uni-muenster.de/Master/Semester1/SpatiOptmi/SpatialOptimization/" #default directory were the data as well as the skripts are inside
+directory: "yourDirectory" #default directory were the data as well as the skripts are inside
 optimization: #parameters of the optimization
   year: 2001 #which year to take: valid values 2001 and 2016
   crossoverPoints: 7 #number of crossover points during crossover

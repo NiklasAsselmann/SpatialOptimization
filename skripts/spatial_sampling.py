@@ -4,7 +4,15 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 import initial_population
 
-default_directory = "your/directory"
+import yaml
+
+# Read config.yaml file
+with open("config.yaml", 'r') as stream:
+    yamlData = yaml.safe_load(stream)
+
+
+
+default_directory = yamlData["directory"]
 
 class SpatialSampling(Sampling):
  def __init__(self, var_type=np.float,default_dir=None) -> None:

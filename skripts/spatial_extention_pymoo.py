@@ -69,6 +69,13 @@ def _new_get_mutation_options():
 
 import numpy as np
 from pymoo.model.population import Population
+import yaml
+
+# Read config.yaml file
+with open("config.yaml", 'r') as stream:
+    yamlData = yaml.safe_load(stream)
+
+offspring = yamlData["optimization"]["offspring"]
 
 def _new_crossover_do(self, problem, pop, parents, **kwargs):
         """
@@ -116,7 +123,7 @@ def _new_crossover_do(self, problem, pop, parents, **kwargs):
         # flatten the array to become a 2d-array
         print(X.shape)
         if len(X.shape)>3:
-            X = X.reshape(16, X.shape[-2], X.shape[-1])
+            X = X.reshape(offspring, X.shape[-2], X.shape[-1])
         else:
             X = X.reshape(-1, X.shape[-1])
         # create a population object

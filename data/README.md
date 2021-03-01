@@ -1,4 +1,3 @@
-- The used data is stored in two folders 
-- in the folder "finalData" all data is stored which we finally used 
-- in the folder "preparationData" all data is stored which we used for preparation 
-- Both file name and paths are named according to the data type and time reference 
+- In the folder "finalData" all data is stored which we finally used after preprocessing 
+- Thus, these data were already appropriately tailored to the study area, the cell size was adjusted, the coordinate system was adjusted, and all data were converted to raster format
+- If you are interested in the raw data just contact us

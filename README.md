@@ -1,11 +1,13 @@
-# Spatial Optimization Approach to Analyse the Impact of Minimizing Transport Distances within the Supply Chains of Agricultural Cultivation and Livestock Farming on the Agricultural Profit and the Area of Natural Vegetation in Mato Grosso, Brazil. 
+# Trade-Offs Between Maximizing the Agricultural Profit and the Area of Natural Vegetation in Mato Grosso, Brazil
 
-For this purpose, an NSGA-II optimization is performed to investigate: 
+## Abstract 
+Despite numerous efforts and regulations by the government, deforestation in the Brazilian rainforest, especially in the state of Mato Grosso, continues inexorably. 
+The key reason for this development is the fact that the region has increasingly become one of the major players in the world's supplier of Soy and Beef. 
+In this work, we report on how computing a Spatial Optimization, based on the classic NSGA2 algorithm, can reveal the trade-offs between these two conflicting poles and what they look like.
+In principle, it must be assumed that if the agricultural profit should have been increased by one million US dollars there must have been a minimal loss of 7.7 ha in 2001 and 7.2 ha in 2016 of natural vegetation. 
+Nevertheless, our calculations have shown that despite the application of governmental regulations and the existence of protected areas, agricultural profit can be increased without reducing the area of natural vegetation and vice versa in relation to the initial land use of our study area in Mato Grosso in 2001 and 2016. 
+Thereby, setting the focus on soy as crop in the north of the study area, a renaturation of agricultural non-productive areas, as well as the expansion of agricultural processing infrastructure, is beneficial. 
 
-1. How can the study area be used to maximize the agricultural profit but to keep or increase the area of natural vegetation?
-2. Which effect has minimizing the transport distances within the supply chains of agricultural cultivation and livestock farming on the gained profit and the land consumption of natural vegetation?
-
-A more detailed explanation of Objectives, Control Variables, Constraints and Implementation will be available here shortly. 
 This software was developed as part of the study project "Spatial Optimization" in the winterterm 2020/21 at [ifgi](https://www.uni-muenster.de/Geoinformatics/en/index.html) at the [University of Münster](https://www.uni-muenster.de/en/). 
 
 # How-To 
